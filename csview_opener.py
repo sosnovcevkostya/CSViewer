@@ -1,8 +1,11 @@
 import os
 import re
+from dotenv import load_dotenv
+
+load_dotenv()
 
 class CSViewOpener:
-    DATA_DIR = "./data"
+    DATA_DIR = os.getenv('DATA_DIR')
 
     def __init__(self, **kwargs):
         self._show_service_info(**kwargs)
