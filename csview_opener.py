@@ -1,6 +1,6 @@
 import os
 import re
-from config import DATA_DIR
+from config import *
 
 class CSViewOpener:
     def __init__(self, **kwargs):
@@ -23,7 +23,7 @@ class CSViewOpener:
 
     def __exit__(self, exc_type, exc_value, traceback):
         if not all(value is None for value in [exc_type, exc_value, traceback]):
-           print(f"""CSViewOpener is interrupted with 
+           raise RuntimeError(f"""CSViewOpener is interrupted with 
                  exc_type: {{{exc_type}}}, 
                  exc_value: {{{exc_value}}}, 
                  traceback: {{{traceback}}}""")
@@ -33,4 +33,4 @@ class CSViewOpener:
     
     @staticmethod
     def _show_service_info(**kwargs):
-      print(f'CSViewOpener is invoked with params { {key: value for key, value in kwargs.items()}}')      
+      logging.info(f'CSViewOpener is invoked with params { {key: value for key, value in kwargs.items()}}')      
