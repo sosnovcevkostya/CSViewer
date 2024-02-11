@@ -1,12 +1,8 @@
 import os
 import re
-from dotenv import load_dotenv
-
-load_dotenv()
+from config import DATA_DIR
 
 class CSViewOpener:
-    DATA_DIR = os.getenv('DATA_DIR')
-
     def __init__(self, **kwargs):
         self._show_service_info(**kwargs)
         file_path = kwargs['file_path'] if 'file_path' in kwargs.keys() else None
@@ -14,9 +10,9 @@ class CSViewOpener:
         if file_path:
           self.file_path = file_path
         else:
-          for file in os.listdir(self.DATA_DIR):
+          for file in os.listdir(DATA_DIR):
             if re.match(r".*\.csv", file):
-               self.file_path = '/'.join([self.DATA_DIR, file])
+               self.file_path = '/'.join([DATA_DIR, file])
                break
           if not self.file_path:
              raise RuntimeError('There is no csv file to show')
