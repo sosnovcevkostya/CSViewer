@@ -13,3 +13,4 @@ match os.getenv('LOGGING_LEVEL'):
 DATA_DIR = os.getenv('DATA_DIR') or "./data"
 POSSIBLE_DEL = [sym for sym in os.getenv('POSSIBLE_DEL')] or [' ', ',', '|', ';', ':']
 BASIS_ROWS_COUNT = int(os.getenv('BASIS_ROWS_COUNT') or 2)
+DATA_TYPE = str(os.getenv('DATA_TYPE') or "csv").lower()

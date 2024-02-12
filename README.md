@@ -9,5 +9,14 @@ RFC 4180 requires follows:
 - Fields containing a line-break, double-quote or commas should be quoted. (If they are not, the file will likely be impossible to process correctly.)
 - If double-quotes are used to enclose fields, then a double-quote in a field must be represented by two double-quote characters.
 
-This code expects not even comma as a delimiter, but every symbol from list [ ,|;] too. Because of this CSViewer requires one more condition:
+This code expects not even comma as a delimiter, but every symbol from list [ ,|;:] too. Because of this CSViewer requires one more condition:
 - Fields containing any symbol above should be quoted too.
+
+
+TODO:
+- Main logic class
+- Logic for request from terminal. Parameters: path to file, rows range to show / all showing, delimiter, header
+- Test
+- Docker image
+- Readme rewrite 
+- Docstring
