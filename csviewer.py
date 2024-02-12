@@ -1,11 +1,13 @@
 from config import *
+from args_parser import ArgsParser
 
 class CSViewer:
-  __slots__ = 'file', 'head_rows', 'data', 'settings'
+  __slots__ = 'file', 'head_rows', 'data', 'settings', 'determinant'
 
-  def __init__(self, file, settings=None):
+  def __init__(self, file, args=None):
     self.file = file
-    self.settings = settings 
+    self.args = ArgsParser(args).parsed_dict 
+    self.determinant = None
     self.data = None
     self.head_rows = None
 
