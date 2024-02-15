@@ -1,11 +1,13 @@
 import sys
 from config import *
-from delimiter_determinant import delimiterDeterminant
+from args_parser import ArgsParser
 from csview_opener import CSViewOpener
 from csviewer import CSViewer
 
 #TODO file_path
 if __name__ == "__main__":
-  with CSViewOpener() as file:
-    csviewer = CSViewer(file, sys.argv[1:])
+  args = ArgsParser(sys.argv[1:])
+
+  with CSViewOpener(file_path = args.path_to_file) as file:
+    csviewer = CSViewer(file, args)
     csviewer.parse()

@@ -1,4 +1,6 @@
 import re
+import os
+from config import *
 
 class ArgsParser:
   __slots__ = 'show_header', 'range_from', 'range_to', 'path_to_file', 'delimiter'
@@ -6,11 +8,11 @@ class ArgsParser:
   TYPE_TO_RE = {
     'num': r'\d+',
     'sym': r'\w',
-    'str': r'[0-9A-Za-z/]*'
+    'str': r'[\a-zA-Z0-9]+'
   }
   
   def __init__(self, args) -> None:
-    args = str(args or '')
+    args = ' '.join(args) if args else ''
 
     self.show_header = True if '-H' in args else False
     self.range_from = self.set_arg('f', 'num', args)
@@ -18,7 +20,13 @@ class ArgsParser:
     self.delimiter = self.set_arg('d', 'sym', args)
     self.path_to_file = self.set_arg('p', 'str', args)
 
+    if self.path_to_file:
+      self.path_to_file = self.path_to_file.strip()
+
     self.validate()
+    logging.info(f'CSViewer is configured with {
+       {attr: getattr(self, attr) for attr in self.__dir__() if attr in self.__slots__} 
+      }')
 
   def validate(self):
     if all(

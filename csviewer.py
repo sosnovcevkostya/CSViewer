@@ -1,6 +1,5 @@
 import re
 from config import *
-from args_parser import ArgsParser
 from delimiter_determinant import delimiterDeterminant
 
 class CSViewer:
@@ -8,7 +7,7 @@ class CSViewer:
 
   def __init__(self, file, args=None):
     self.file = file
-    self.args = ArgsParser(args)
+    self.args = args
     self.delimiter = None
 
   def get_head_rows(self, basis_rows_count=BASIS_ROWS_COUNT):
@@ -39,6 +38,8 @@ class CSViewer:
       if self.args.show_header and counter == 0:
         self.show_in_terminal(line)
         counter += 1
+        if self.args.range_from:
+          self.args.range_from += 1
         continue
       elif counter == 0:
         self.show_in_terminal([i for i in range(len(line))])
@@ -53,10 +54,9 @@ class CSViewer:
 
       self.show_in_terminal(line)
 
-  #TODO other delimiter
-  @staticmethod
-  def split_line(row):
-    return re.split(r'''((?:[^;"']|"[^"]*"|'[^']*')+)''', row)[1::2]
+  #TODO fix terminal delimiter arg
+  def split_line(self, row):
+    return re.split(r'''((?:[^{symbol}"']|"[^"]*"|'[^']*')+)'''.format(symbol=self.delimiter), row)[1::2]
   
   @staticmethod
   def show_in_terminal(line):
