@@ -1,7 +1,7 @@
 import re
 from config import *
 
-class DelimeterDeterminant:
+class delimiterDeterminant:
   __slots__ = 'basis_rows'
   
   def __init__(self, basis_rows):

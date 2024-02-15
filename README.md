@@ -1,4 +1,4 @@
-CSViewer - tratatatatata
+CSViewer - Python script for parsing text separeted files.
 
 There is a standart RFC 4180 designed to standardize and simplify the exchange of data in CSV format.
 RFC 4180 requires follows:
@@ -14,8 +14,6 @@ This code expects not even comma as a delimiter, but every symbol from list [ ,|
 
 
 TODO:
-- Main logic class
-- Logic for request from terminal. Parameters: path to file, rows range to show / all showing, delimiter, header
 - Test
 - Docker image
 - Readme rewrite 
